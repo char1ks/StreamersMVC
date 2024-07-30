@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            padding: 5px;
+            border: 1px solid #007bff;
+            border-radius: 5px;
+            width: 200px;
+            text-align: center;
+            background-color: #fff;
+            transition: background-color 0.3s;
+        }
+        a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+        a[href='/magazine/new'] {
+            border: 1px solid red;
+        }
+
+        a[href='/magazine/new']:hover {
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div th:if="${randomNickname != null}">
+        <title th:text="${randomNickname.getNick()}"></title>
+    </div>
+    <div th:if="${randomNickname == null}">
+        <title>No streamers!</title>
+    </div>
+    <div th:each="streamer:${AllStreamers}">
+        <a th:href="@{/streamers/{id}(id=${streamer.getId()})}" th:text="${streamer.getNick()}"></a>
+    </div>
+</body>
+</html>
